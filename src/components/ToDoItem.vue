@@ -1,13 +1,12 @@
 <template>
   <div>
-    <!--<input type="checkbox" id="todo-item" checked="false" v-bind="isDone" />-->
     <input type="checkbox" :id="id" :checked="isDone" />
-    <label :for="id">{{ label }}</label>
+    <label :for="id">{{label}}</label>    
   </div>
 </template>
 
 <script>
-import uniqueId from 'lodash.uniqueid';
+import uniqueId from "lodash.uniqueid";
 
 export default {
   props: {
@@ -17,8 +16,8 @@ export default {
   data() {
     return {
       isDone: this.done,
-      id: uniqueId("todo-"),
-    };
+      id: uniqueId('todo-')
+    };    
   },
 };
 </script>

@@ -10,18 +10,33 @@
         <to-do-item label="My Todo Iteml With Label" :done="false"></to-do-item>
       </li>
     </ul>
+    <ul>
+      <li v-for="item in ToDoItems" :key="item.id">
+        <to-do-item :label="item.label" :done="item.done"></to-do-item>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-import ToDoItem from "./components/ToDoItem.vue"
+import ToDoItem from "./components/ToDoItem.vue";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    ToDoItem
-  }
-}
+    ToDoItem,
+  },
+  data() {
+    return {
+      ToDoItems: [
+        { label: "Learn Vue", done: false },
+        { label: "Create a Vue project with the CLI", done: true },
+        { label: "Have fun", done: true },
+        { label: "Create a todo-list", done: false },
+      ],
+    };
+  },
+};
 </script>
 
 <style>
