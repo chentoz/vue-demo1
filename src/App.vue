@@ -70,6 +70,7 @@ export default {
       this.ToDoItems.splice(itemIndex, 1);
     },
     editToDo(toDoId, newLabel) {
+      console.log("edit to do")
       const toDoToEdit = this.ToDoItems.find((item) => item.id === toDoId);
       toDoToEdit.label = newLabel;
     },

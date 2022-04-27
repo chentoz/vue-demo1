@@ -36,6 +36,6 @@ export default {
     return {
       label: "",
     };
-  },
+  }
 };
 </script>

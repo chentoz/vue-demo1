@@ -4,13 +4,14 @@
       <label class="edit-label">Edit Name for &quot;{{ label }}&quot;</label>
       <input
         :id="id"
+        ref="labelInput"
         type="text"
         autocomplete="off"
-        v-model.lazy.trim="newLabel"
+        v-model.lazy.trim="newName"
       />
     </div>
     <div class="btn-group">
-      <button type="button" class="btn" @click="onCancel">
+      <button type="button" class="btn" @click="oncancel">
         Cancel
         <span class="visually-hidden">editing {{ label }}</span>
       </button>
@@ -45,9 +46,12 @@ export default {
         this.$emit("item-edited", this.newLabel);
       }
     },
-    oncancel(){
-        this.$emit("edit-cancelled");
-    }
+    oncancel() {
+      this.$emit("edit-cancelled");
+    },
+  },
+  mounted() {
+    this.$refs.labelInput.focus();
   },
 };
 </script>

@@ -12,7 +12,12 @@
     </div>
 
     <div class="btn-group">
-      <button type="button" class="btn" @click="toggleToItemEditForm">
+      <button
+        type="button"
+        class="btn"
+        ref="editButton"
+        @click="toggleToItemEditForm"
+      >
         Edit <span class="visually-hidden">{{ label }}</span>
       </button>
       <button type="button" class="btn btn__danger" @click="deleteToDo">
@@ -20,7 +25,13 @@
       </button>
     </div>
   </div>
-  <to-do-item-edit-form v-else :id="id" :label="label" @item-edited="itemEdited" @edit-cancelled="editCancelled">
+  <to-do-item-edit-form
+    v-else
+    :id="id"
+    :label="label"
+    @item-edited="itemEdited"
+    @edit-cancelled="editCancel"
+  >
   </to-do-item-edit-form>
 </template>
 
@@ -38,7 +49,6 @@ export default {
   },
   data() {
     return {
-      isDone: this.done,
       isEditing: false,
     };
   },
@@ -46,15 +56,30 @@ export default {
     deleteToDo() {
       this.$emit("item-deleted");
     },
-    toggleToItemEditForm() {
-      this.isEditing = true;
-    },
     itemEdited(newLabel) {
       this.$emit("item-edited", newLabel);
       this.isEditing = false;
+      this.focusOnEditButton();
     },
     editCancel() {
+      console.log("editing cancel");
       this.isEditing = false;
+      this.focusOnEditButton();
+    },
+    toggleToItemEditForm() {
+      console.log(this.$refs.editButton);
+      this.isEditing = true;
+    },
+    focusOnEditButton() {
+      // const editButtonRef = this.$refs.editButton;
+      this.$nextTick(() => {
+        this.$refs.editButton.focus();
+      });
+    },
+  },
+  computed: {
+    isDone() {
+      return this.done;
     },
   },
 };
