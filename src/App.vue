@@ -8,7 +8,7 @@
  -->
   </div>
   <div>
-    <h2 id="list-summary">{{ listSummary }}</h2>
+    <h2 id="list-summary" ref="listSummary" tabindex="-1">{{ listSummary }}</h2>
 
     <ul aria-labelledby="list-summary" class="stack-large">
       <li v-for="item in ToDoItems" :key="item.id">
@@ -18,8 +18,10 @@
           :id="item.id"
           @checkbox-changed="updateDoneStatus(item.id)"
           @item-deleted="deleteToDo(item.id)"
-          @item-edited="editToDo(item.id, $event)">
-        ></to-do-item>
+          @item-edited="editToDo(item.id, $event)"
+        >
+          ></to-do-item
+        >
       </li>
     </ul>
   </div>
@@ -68,9 +70,10 @@ export default {
     deleteToDo(toDoId) {
       const itemIndex = this.ToDoItems.findIndex((item) => item.id === toDoId);
       this.ToDoItems.splice(itemIndex, 1);
+      this.$refs.listSummary.focus();
     },
     editToDo(toDoId, newLabel) {
-      console.log("edit to do")
+      console.log("edit to do");
       const toDoToEdit = this.ToDoItems.find((item) => item.id === toDoId);
       toDoToEdit.label = newLabel;
     },
