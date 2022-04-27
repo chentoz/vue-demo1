@@ -7,7 +7,7 @@
   <div>
     <ul>
       <li>
-        <to-do-item label="My Todo Iteml With Label"></to-do-item>
+        <to-do-item label="My Todo Iteml With Label" :done="false"></to-do-item>
       </li>
     </ul>
   </div>
