@@ -1,8 +1,11 @@
 <template>
   <div id="app">
     <h1>To-Do list</h1>
+    <to-do-form></to-do-form>
+<!-- 
     <input type="checkbox" id="todo-item" checked="false" />
     <label for="todo-item">My Todo Item</label>
+ -->  
   </div>
   <div>
     <ul>
@@ -23,11 +26,13 @@
 import ToDoItem from "./components/ToDoItem.vue";
 
 import uniqueId from 'lodash.uniqueid';
+import ToDoForm from './components/ToDoForm.vue'
 
 export default {
   name: "app",
   components: {
     ToDoItem,
+    ToDoForm
   },
   data() {
     return {
