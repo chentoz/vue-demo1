@@ -19,7 +19,10 @@
 </template>
 
 <script>
+
 import ToDoItem from "./components/ToDoItem.vue";
+
+import uniqueId from 'lodash.uniqueid';
 
 export default {
   name: "app",
@@ -29,10 +32,10 @@ export default {
   data() {
     return {
       ToDoItems: [
-        { label: "Learn Vue", done: false },
-        { label: "Create a Vue project with the CLI", done: true },
-        { label: "Have fun", done: true },
-        { label: "Create a todo-list", done: false },
+        { id: uniqueId('todo-'), label: "Learn Vue", done: false },
+        { id: uniqueId('todo-'), label: "Create a Vue project with the CLI", done: true },
+        { id: uniqueId('todo-'), label: "Have fun", done: true },
+        { id: uniqueId('todo-'), label: "Create a todo-list", done: false },
       ],
     };
   },
