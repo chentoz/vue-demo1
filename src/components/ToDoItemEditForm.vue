@@ -1,83 +1,85 @@
 <template>
-  <form class="stack-email" @submit.prevent="onsubmit">
-    <div>
-      <label class="edit-label">Edit Name for &quot;{{ label }}&quot;</label>
-      <input
-        :id="id"
-        ref="labelInput"
-        type="text"
-        autocomplete="off"
-        v-model.lazy.trim="newName"
-      />
-    </div>
-    <div class="btn-group">
-      <button type="button" class="btn" @click="oncancel">
-        Cancel
-        <span class="visually-hidden">editing {{ label }}</span>
-      </button>
-      <button type="submit" class="btn btn__primary">
-        Save
-        <span class="visually-hidden">edit for {{ label }}</span>
-      </button>
-    </div>
-  </form>
+	<form class="stack-email" @submit.prevent="onsubmit">
+		<div>
+			<label class="edit-label"
+				>Edit Name for &quot;{{ label }}&quot;</label
+			>
+			<input
+				:id="id"
+				ref="labelInput"
+				type="text"
+				autocomplete="off"
+				v-model.lazy.trim="newName"
+			/>
+		</div>
+		<div class="btn-group">
+			<button type="button" class="btn" @click="oncancel">
+				Cancel
+				<span class="visually-hidden">editing {{ label }}</span>
+			</button>
+			<button type="submit" class="btn btn__primary">
+				Save
+				<span class="visually-hidden">edit for {{ label }}</span>
+			</button>
+		</div>
+	</form>
 </template>
 
 <script>
 export default {
-  props: {
-    label: {
-      type: String,
-      required: true,
-    },
-    id: {
-      type: String,
-      required: true,
-    },
-  },
-  data() {
-    return {
-      newLabel: this.label,
-    };
-  },
-  methods: {
-    onsubmit() {
-      if (this.newLabel && this.newLabel !== this.label) {
-        this.$emit("item-edited", this.newLabel);
-      }
-    },
-    oncancel() {
-      this.$emit("edit-cancelled");
-    },
-  },
-  mounted() {
-    this.$refs.labelInput.focus();
-  },
-};
+	props: {
+		label: {
+			type: String,
+			required: true,
+		},
+		id: {
+			type: String,
+			required: true,
+		},
+	},
+	data() {
+		return {
+			newLabel: this.label,
+		}
+	},
+	methods: {
+		onsubmit() {
+			if (this.newLabel && this.newLabel !== this.label) {
+				this.$emit("item-edited", this.newLabel)
+			}
+		},
+		oncancel() {
+			this.$emit("edit-cancelled")
+		},
+	},
+	mounted() {
+		this.$refs.labelInput.focus()
+	},
+}
 </script>
 <style scoped>
 .edit-label {
-  font-family: Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #0b0c0c;
-  display: block;
-  margin-bottom: 5px;
+	font-family: Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	color: #0b0c0c;
+	display: block;
+	margin-bottom: 5px;
 }
 input {
-  display: inline-block;
-  margin-top: 0.4rem;
-  width: 100%;
-  min-height: 4.4rem;
-  padding: 0.4rem 0.8rem;
-  border: 2px solid #565656;
+	display: inline-block;
+	margin-top: 0.4rem;
+	width: 100%;
+	min-height: 4.4rem;
+	padding: 0.4rem 0.8rem;
+	border: 2px solid #565656;
 }
 form {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 }
 form > * {
-  flex: 0 0 100%;
+	flex: 0 0 100%;
 }
 </style>
